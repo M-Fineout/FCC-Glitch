@@ -9,10 +9,11 @@ app.use(function (req, res, next) {
   
   //get ip-address
   var ipSplit = req.headers["x-forwarded-for"].split(",");
-  var ip = ipSplit[0];
+  var ip = ipSplit[1].split(":");
   
   res.json({
-    ipaddress: ip,
+    //what: ip[3], 
+    ipaddress: ip[3],
     language: req.headers["accept-language"],
     software: req.headers["user-agent"]
   });
