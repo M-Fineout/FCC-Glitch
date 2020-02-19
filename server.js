@@ -8,12 +8,11 @@ const app = express();
 app.use(function (req, res, next) {
   
   //get ip-address
-  var ipSplit = req.headers["x-forwarded-for"].split(",");
-  var ip = ipSplit[1].split(":");
+  //var ipSplit = req.headers["x-forwarded-for"].split(",");
+  //var ip = ipSplit[1].split(":");
   
   res.json({
-    //what: ip[3], 
-    ipaddress: ip[3],
+    ipaddress: req.clientIP,
     language: req.headers["accept-language"],
     software: req.headers["user-agent"]
   });
