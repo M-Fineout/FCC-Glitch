@@ -20,15 +20,11 @@ app.use(function (req, res, next) {
   next();
 });
 
-/*
+
 app.get("api/whoami", function(req, res) {
-  //var ip = req.ip.toString();
-  console.log(req.ip.toString());
   res.json({
-    ipaddress: res.ip
   });
 });
-*/
 
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
