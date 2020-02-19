@@ -8,27 +8,22 @@ const app = express();
 app.use(function (req, res, next) {
   
   //get ip-address
-  var ipSplit = req.headers["x-forwarded-for"].split(",");
-  var ip = ipSplit[1].split(":");
+  //var ipSplit = req.headers["x-forwarded-for"].split(",");
+  //var ip = ipSplit[1].split(":");
   
   res.json({
-    //what: ip[3], 
-    ipaddress: ip[3],
+    ipaddress: req.clientIP,
     language: req.headers["accept-language"],
     software: req.headers["user-agent"]
   });
   next();
 });
 
-/*
+
 app.get("api/whoami", function(req, res) {
-  //var ip = req.ip.toString();
-  console.log(req.ip.toString());
   res.json({
-    ipaddress: res.ip
   });
 });
-*/
 
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
