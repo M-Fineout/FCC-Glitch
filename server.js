@@ -5,14 +5,16 @@
 const express = require("express");
 const app = express();
 
+/*
 app.use(function (req, res, next) {
   
   //get ip-address
-  //var ipSplit = req.headers["x-forwarded-for"].split(",");
-  //var ip = ipSplit[1].split(":");
+  var ipSplit = req.headers["x-forwarded-for"].split(",");
+  var ip = ipSplit[1].split(":");
   
   res.json({
-    ipaddress: req.clientIP,
+    what: req.clientIp,
+    ipaddress: ip[3],
     language: req.headers["accept-language"],
     software: req.headers["user-agent"]
   });
@@ -24,7 +26,22 @@ app.get("api/whoami", function(req, res) {
   res.json({
   });
 });
+*/
 
+app.get('/api/whoami', (req, res) => {
+  //get ip-address
+  var ipSplit = req.headers["x-forwarded-for"].split(",");
+  var ip = ipSplit[1].split(":");
+  
+var ipaddress = ip[3];
+var language = req.acceptsLanguages();
+var software=req.get('User-Agent');
+ res.json({
+ ipaddress: ipaddress,
+ language:language[0],
+ software:software
+ });
+});
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
