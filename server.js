@@ -31,11 +31,11 @@ app.get("api/whoami", function(req, res) {
 app.get('/api/whoami', (req, res) => {
   //get ip-address
   var ipSplit = req.headers["x-forwarded-for"].split(",");
-  var ip = ipSplit[1].split(":");
+  //var ip = ipSplit[1].split(":");
   
-var ipaddress = ip[3];
+var ipaddress = ipSplit[0];
 var language = req.acceptsLanguages();
-var software=req.get('User-Agent');
+var software = req.get('User-Agent');
  res.json({
  ipaddress: ipaddress,
  language:language[0],
