@@ -28,6 +28,19 @@ app.get("api/whoami", function(req, res) {
 });
 */
 
+
+// we've started you off with Express,
+// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+
+// http://expressjs.com/en/starter/static-files.html
+app.use(express.static("public"));
+
+// enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
+// so that your API is remotely testable by FCC 
+var cors = require('cors');
+app.use(cors({optionSuccessStatus: 200}));  // some legacy browsers choke on 204
+
+
 app.get('/api/whoami', (req, res) => {
   //get ip-address
   var ipSplit = req.headers["x-forwarded-for"].split(",");
@@ -42,11 +55,7 @@ var software = req.get('User-Agent');
  software:software
  });
 });
-// we've started you off with Express,
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function(request, response) {
